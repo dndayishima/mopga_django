@@ -1,0 +1,5 @@
+# Ne pas ajouter au Repo Git les fichier de l'environnement virtuel
+venv
+
+# Ne pas ajouter le cache Python __pycache__
+mopga/__pycache__/
