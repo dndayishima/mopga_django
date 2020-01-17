@@ -15,3 +15,6 @@ users/migrations/
 # Les fichier Media static ne sont pas à mettre sur Github
 # car ce sont des fichiers des utilisateurs
 media
+
+# Le fichier de base de données n'est pas à mettre sur Github
+db.sqlite3
