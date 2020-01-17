@@ -4,8 +4,14 @@ venv
 # Ne pas ajouter le cache Python __pycache__
 mopga/__pycache__/
 blog/__pycache__/
+users/__pycache__/
 
 # Ne pas ajouter les migrations, car ces derniers peuvent être produits
 # avec la commande : 
 # python manage.py makemigrations
 blog/migrations/
+users/migrations/
+
+# Les fichier Media static ne sont pas à mettre sur Github
+# car ce sont des fichiers des utilisateurs
+media

@@ -26,6 +26,13 @@ source venv/bin/activate
 # Dans ce projet nous sommes sur Django 2.2.*
 pip install Django
 
+# Installer CRISPY, utilisé pour le style des formulaires à la Bootstrap
+pip install django-crispy-forms
+
+# Installation de Pillow (une librairie qui va nous permettre de travailler)
+# avec des images en Python
+pip install Pillow
+
 # lancement du serveur se développement
 python manage.py runserver
 ```
