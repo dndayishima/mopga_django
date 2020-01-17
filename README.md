@@ -29,3 +29,16 @@ pip install Django
 # lancement du serveur se développement
 python manage.py runserver
 ```
+## Effectuer des migrations dans la base de données
+
+Pour créer et appliquer les migrations dans une base de données, exécutez les commandes ci-dessous :
+```bash
+# Il faut être dans le répertoire du projet et s'assurer que
+# l'environnement virtuel est bien activé
+
+# Création des migrations (les éventuels changements dans les models des applications)
+python manage.py makemigrations
+
+# Appliquer les migrations (s'il y en a) dans la base de données
+python manage.py migrate
+```
