@@ -23,7 +23,7 @@ virtualenv venv -p python3
 source venv/bin/activate
 
 # Une fois que l'environnement virtuel est activé, il faut installé Django.
-# Dans ce projet nous sommes sur Django 2.2
+# Dans ce projet nous sommes sur Django 2.2.*
 pip install Django
 
 # lancement du serveur se développement

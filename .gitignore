@@ -3,3 +3,9 @@ venv
 
 # Ne pas ajouter le cache Python __pycache__
 mopga/__pycache__/
+blog/__pycache__/
+
+# Ne pas ajouter les migrations, car ces derniers peuvent être produits
+# avec la commande : 
+# python manage.py makemigrations
+blog/migrations/
