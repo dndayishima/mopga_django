@@ -33,7 +33,29 @@ pip install django-crispy-forms
 # avec des images en Python
 pip install Pillow
 
-# lancement du serveur se développement
+# Configuration de MySQL
+sudo pip install MySQL-python
+pip install psycopg2-binary
+pip install mysqlclient
+sudo apt-get install mysql-server
+
+# Verification du status de MySQL
+systemctl status mysql.service
+CTRL+C
+
+# Création de la base de données
+mysql -u root -p
+create database db_mopga;
+show databases;
+
+# Application des migrations
+python manage.py makemigrations users
+python manage.py makemigrations blog
+python manage.py migrate
+
+# Création du dossier 'media/profile_pics' à la racine du projet (là où se trouve le fichier manage.py)
+
+# lancement du serveur de développement
 python manage.py runserver
 ```
 ## Effectuer des migrations dans la base de données
