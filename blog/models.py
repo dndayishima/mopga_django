@@ -11,6 +11,7 @@ class Projet(models.Model):
     description = models.TextField()
     montant_souhaite = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, blank=True)
     auteur = models.ForeignKey(User, on_delete=models.CASCADE)
+    est_finance = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
