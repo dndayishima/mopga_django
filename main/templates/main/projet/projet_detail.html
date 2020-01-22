@@ -37,7 +37,7 @@
                         </p>
                         <hr>
                         <p class="mt-3" style="color: #36b9cc;">Montant requis: {{ object.montant_souhaite }} euros</p>
-                        <p class="mt-3" style="color: #36b9cc;">Note moyenne: 0.0</p>
+                        <p class="mt-3" style="color: #36b9cc;">Note moyenne: {{ note_moyenne.moyenne }}</p>
                         <hr>
                         <small class="text-muted">
                             Par <a href="{% url 'user-projets' object.auteur.username %}">{{ object.auteur }}</a>

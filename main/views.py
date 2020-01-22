@@ -118,7 +118,10 @@ class ProjetDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         commentaires = Commentaire.objects.all().filter(projet=self.kwargs['pk'])
+        projet = get_object_or_404(Projet, pk=self.kwargs['pk'])
+
         context['commentaires'] = commentaires
+        context['note_moyenne'] = note_moyenne(self.kwargs['pk'])
 
         projet = get_object_or_404(Projet, pk=self.kwargs['pk'])
 
