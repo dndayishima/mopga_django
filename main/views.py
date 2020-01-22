@@ -214,7 +214,9 @@ def like_comment(request, pk, pkcom):
         reaction_commentaire.evaluation = commentaire
         reaction_commentaire.like_authenticate_user = user
         reaction_commentaire.type = 1
+        Commentaire.objects.all().filter(pk=pkcom).update(reactions=commentaire.reactions + 1)
         reaction_commentaire.save()
+
     else:
         reaction_commentaire_fromdb.delete()
     return redirect('projet-detail', pk=pk)
