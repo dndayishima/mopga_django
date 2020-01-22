@@ -85,13 +85,20 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="col-auto">
-                                <a class="float-right ml-2" href="">
-                                <i class="fas fa-thumbs-up fa-2x" style="color: #36b9cc;"></i></a>
+                                <a class="float-right ml-2" href="{% url 'main-like' object.id commentaire.id %}">
+                                    <i class="fas fa-thumbs-up fa-2x" {% if commentaire.like_set.count > 0 %}style="color: #36b9cc;"{% else %} style="color: #858796;" {% endif %}></i>
+                                </a>
                                 <div class="text-xs font-weight-bold text-info text-uppercase mt-1">
-                                    {{ commentaire.reactions }}
+                                    {% if commentaire.like_set.count > 0 %}
+                                        {{ commentaire.like_set.count }}
+                                    {% endif %}
                                 </div>
                             </div>
+
+
                         </div>
                     </div>
                 </div>

@@ -78,7 +78,6 @@ Evaluer: permet de donner une evaluation à un projet par un user
 Si le user est 'expert’ il pourra évaluer le projet avec une note
 """
 
-
 class Evaluer(models.Model):
     evaluateur = models.ForeignKey(User, on_delete=models.CASCADE)
     projet = models.ForeignKey(Projet, on_delete=models.CASCADE)
@@ -87,3 +86,13 @@ class Evaluer(models.Model):
 
     def __str__(self):
         return self.evaluateur.username
+
+
+"""
+Like permet de sauvegarder les réactions des utilisateurs pour les commentaires
+"""
+class Like(models.Model):
+    like_authenticate_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    evaluation = models.ForeignKey(Commentaire, on_delete=models.CASCADE)
+    type = models.PositiveIntegerField(default=0)
+    date_like = models.DateTimeField(auto_now_add=True, blank=True)

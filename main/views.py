@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from .forms import CommentForm, FinancerForm, EvaluerForm, ContactForm
-from .models import Projet, Commentaire
+from .models import Projet, Commentaire, Like
 from django.contrib.auth.decorators import login_required
 import re
 from django.db.models import Q
@@ -202,20 +202,22 @@ def add_comment_to_projet(request, pk):
         form = CommentForm()
     return render(request, 'main/projet/add_comment_to_projet.html', {'form': form})
 
-
-# def like_comment(request, pk):
-#     commentaire = Commentaire.objects.all().filter(pk=pkcom).first()
-#     user = User.objects.all().filter(pk=request.user.pk).first()
-#     reaction_commentaire_fromdb = ReactionCommentaire.objects.all().filter(user=user, commentaire=commentaire).first()
-#     if reaction_commentaire_fromdb is None:
-#         reaction_commentaire = ReactionCommentaire()
-#         reaction_commentaire.commentaire = commentaire
-#         reaction_commentaire.type = 1
-#         reaction_commentaire.user = user
-#         reaction_commentaire.save()
-#     else:
-#         reaction_commentaire_fromdb.delete()
-#     return redirect('main-home')
+"""
+Réactions des utilisateurs avec les commentaires
+"""
+def like_comment(request, pk, pkcom):
+    commentaire = Commentaire.objects.all().filter(pk=pkcom).first()
+    user = User.objects.all().filter(pk=request.user.pk).first()
+    reaction_commentaire_fromdb = Like.objects.all().filter(like_authenticate_user=user, evaluation=commentaire).first()
+    if reaction_commentaire_fromdb is None:
+        reaction_commentaire = Like()
+        reaction_commentaire.evaluation = commentaire
+        reaction_commentaire.like_authenticate_user = user
+        reaction_commentaire.type = 1
+        reaction_commentaire.save()
+    else:
+        reaction_commentaire_fromdb.delete()
+    return redirect('projet-detail', pk=pk)
 
 
 """

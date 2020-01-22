@@ -8,6 +8,7 @@ from .views import ProjetListView, \
     UserProjetListView
 
 urlpatterns = [
+    path('like/<int:pk>/<int:pkcom>/', views.like_comment, name='main-like'),
     path('', views.projetFinance, name='main-home'),
     path('privacy/', views.privacy, name='main-privacy'),
     path('search/', views.recherche, name='main-search'),
