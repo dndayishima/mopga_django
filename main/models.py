@@ -11,7 +11,8 @@ class Projet(models.Model):
     description = models.TextField()
     # le monatant souhaité pour le projet
     montant_souhaite = models.DecimalField(default=0.00, max_digits=10, decimal_places=2, blank=True)
-    image = models.ImageField(default="projet-default.jpg", upload_to="projects_pics//%d-%m-%Y-%H-%M-%S")
+    #image = models.ImageField(default="projet-default.jpg", upload_to="projects_pics//%d-%m-%Y-%H-%M-%S")
+    image = models.ImageField(default="projet-default.jpg", upload_to="projects_pics/")
     auteur = models.ForeignKey(User, on_delete=models.CASCADE)
     # est_financé = true si le projet atteint le montant souhaité
     est_finance = models.BooleanField(default=False)

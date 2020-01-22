@@ -210,6 +210,7 @@ def add_comment_to_projet(request, pk):
 """
 Réactions des utilisateurs avec les commentaires
 """
+@login_required
 def like_comment(request, pk, pkcom):
     commentaire = Commentaire.objects.all().filter(pk=pkcom).first()
     user = User.objects.all().filter(pk=request.user.pk).first()

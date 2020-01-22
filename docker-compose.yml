@@ -8,12 +8,12 @@ services:
       - '3306:3306'
     environment:
        MYSQL_DATABASE: "db_mopga"
-       MYSQL_USER: 'root'
+       MYSQL_USER: 'test'
        MYSQL_PASSWORD: 'admin'
        MYSQL_ROOT_PASSWORD: 'admin'
     volumes:
-      - ./db:/var/lib/mysql
-      #- ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+      #- ./db:/var/lib/mysql
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
   web:
     container_name: django_container
@@ -23,3 +23,13 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+  portainer:
+    image: portainer/portainer
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
