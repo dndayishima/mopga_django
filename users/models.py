@@ -28,3 +28,13 @@ class Profile(models.Model):
         output_size = (60, 60)
         img.thumbnail(output_size)
         img.save(self.image.path)
+
+
+class PersonManager(models.Manager):
+
+    """
+    Vérifier si un utilisateur est expert
+    """
+    def est_expert(self):
+        profile = Profile.objects.all().filter(pk=self.pk).first()
+        return profile.is_expert

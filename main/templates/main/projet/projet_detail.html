@@ -37,7 +37,7 @@
                         </p>
                         <hr>
                         <p class="mt-3" style="color: #36b9cc;">Montant requis: {{ object.montant_souhaite }} euros</p>
-                        <p class="mt-3" style="color: #36b9cc;">Note moyenne: 4.5</p>
+                        <p class="mt-3" style="color: #36b9cc;">Note moyenne: 0.0</p>
                         <hr>
                         <small class="text-muted">
                             Par <a href="{% url 'user-projets' object.auteur.username %}">{{ object.auteur }}</a>
@@ -55,7 +55,7 @@
         <i class="fas fa-money-bill fa-sm text-white-50 mr-1"></i>Financer</a>
 
     <a href="{% url 'evaluer_projet' pk=projet.pk %}"
-       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2 {% if object.auteur == user %} disabled {% endif %}">
+       class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mb-2 {% if object.auteur == user or not user.profile.is_expert %} disabled {% endif %}">
         <i class="fas fa-check-circle fa-sm text-white-50 mr-1"></i>Noter le projet</a>
 
     <a href="{% url 'add_comment_to_projet' pk=projet.pk %}"

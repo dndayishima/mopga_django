@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from .forms import CommentForm, FinancerForm, EvaluerForm, ContactForm
-from .models import Projet, Commentaire, Like
+from .models import Projet, Commentaire, Like, Financer
 from django.contrib.auth.decorators import login_required
 import re
 from django.db.models import Q

@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 from PIL import Image
+from django.db.models import Sum, Avg
 
 
 class Projet(models.Model):
@@ -96,3 +97,34 @@ class Like(models.Model):
     evaluation = models.ForeignKey(Commentaire, on_delete=models.CASCADE)
     type = models.PositiveIntegerField(default=0)
     date_like = models.DateTimeField(auto_now_add=True, blank=True)
+
+
+class ProjetManager(models.Manager):
+
+    """
+    Vérifier si un projet est financé
+    """
+    def est_finance(self):
+        total = Financer.objects.annotate(total=Sum('montant')).filter(pk=self.pk)
+        projet = Projet.objects.all().filter(pk=self.pk).first()
+
+        montant_requis = projet.montant_souhaite
+
+        return (total >= montant_requis)
+
+
+    """
+    Calculer la note moyenne d'un projet
+    """
+
+    def note_moyenne(self):
+        moyenne = Evaluer.objects.aggregate(average_rating=Avg('note_projet')).filter(pk=self.pk)
+
+        return moyenne
+
+    """
+    Calculer les 'Points gagnés' pour un utilisateur
+    """
+    def points_gagnes(self):
+
+        return 0
