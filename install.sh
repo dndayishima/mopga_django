@@ -7,4 +7,4 @@ sudo docker-compose build
 sudo docker-compose up -d
 
 # exécution des migrations après la création des conteneurs
-docker-compose run web /bin/bash /app/mopga_django/makemigrations.sh
+docker-compose run web /bin/bash makemigrations.sh
