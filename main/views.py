@@ -69,8 +69,8 @@ def projetFinance(request):
 
     context = {
         'commentaires': Commentaire.objects.all().filter(projet=projet),
-        'projet': projet,
-        'note_moyenne': note_moyenne(projet.pk)
+        'projet': projet
+        #'note_moyenne': note_moyenne(projet.pk)
     }
 
     return render(request, 'main/home.html', context)
