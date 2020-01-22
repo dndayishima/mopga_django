@@ -1,6 +1,9 @@
 # Ne pas ajouter au Repo Git les fichier de l'environnement virtuel
 venv
 
+# Base de donnée MySQL
+db
+
 # Ne pas ajouter le cache Python __pycache__
 mopga/__pycache__/
 
