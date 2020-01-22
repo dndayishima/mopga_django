@@ -11,6 +11,12 @@ Si les deux paquets ne sont pas installés, vous pouvez les installer en suivant
 sudo apt-get install python-virtualenv python-pip python-dev
 ```
 
+## Lancement des conteneurs Python et MySQL
+
+Il faut avoir sur son poste Docker et docker-compose installés.
+- Le script bash *install.sh* installe le projet et lance les deux conteneurs.
+- Le script *uninstall.sh* démonte les deux conteneur.
+
 ## Lancement en mode développement
 ```bash
 # Se mettre à la racine du projet (là où se trouve le fichier manage.py)

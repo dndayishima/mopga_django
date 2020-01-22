@@ -21,4 +21,4 @@ COPY ./requirements.txt /app/
 RUN pip install -r requirements.txt
 
 # Récupération du code source depuis un repo GIT
-COPY . /app/
+#COPY . /app/

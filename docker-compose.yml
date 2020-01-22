@@ -11,8 +11,10 @@ services:
        MYSQL_USER: 'test'
        MYSQL_PASSWORD: 'admin'
        MYSQL_ROOT_PASSWORD: 'admin'
+    # Volume sur le fichier dump.sql, fichier qui contient la base de données
+    # avec un minimum d'information, notamment les 2 utilisateurs
+    # admin et uti (utilisateur que le professeur a demandé)
     volumes:
-      #- ./db:/var/lib/mysql
       - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
 
   web:
@@ -21,9 +23,13 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8000
     ports:
       - "8000:8000"
+    volumes:
+      - .:/app/
     depends_on:
       - db
 
+  # Utilisation de Portainer pour une visualisation graphique Docker
+  # utile pour le débogage
   portainer:
     image: portainer/portainer
     container_name: portainer

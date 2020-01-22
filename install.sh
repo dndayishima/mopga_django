@@ -3,5 +3,8 @@
 # Création des conteneurs (Django et MySQL)
 sudo docker-compose up -d --build
 
-# exécution des migrations après la création des conteneurs
-#docker-compose run web /bin/bash makemigrations.sh
+echo "Attente du lancement du conteneur de la base de données"
+sleep 10
+
+# Restart du conteneur django
+sudo docker-compose restart web
