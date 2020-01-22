@@ -87,8 +87,8 @@ DATABASES = {
         'NAME': 'db_mopga',
         'USER': 'root',
         'PASSWORD': 'admin',
-        'HOST': '',
-        'PORT': '',
+        'HOST': 'db',
+        'PORT': '3306',
         'default-character-set': 'utf8'
     }
 }

@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  db:
+    container_name: mysql_container
+    image: mysql:5.7
+    ports:
+      - '3306:3306'
+    environment:
+       MYSQL_DATABASE: "db_mopga"
+       MYSQL_USER: 'root'
+       MYSQL_PASSWORD: 'admin'
+       MYSQL_ROOT_PASSWORD: 'admin'
+    volumes:
+      - ./db:/var/lib/mysql
+      #- ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+  web:
+    container_name: django_container
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    #volumes:
+    #  - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
