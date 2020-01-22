@@ -8,7 +8,7 @@ mopga/__pycache__/
 *.log
 *.pot
 *.pyc
-blog/__pycache__/
+main/__pycache__/
 users/__pycache__/
 __pycache__/
 local_settings.py
@@ -20,7 +20,7 @@ media
 # Ne pas ajouter les migrations, car ces derniers peuvent être produits
 # avec la commande :
 # python manage.py makemigrations
-blog/migrations/
+main/migrations/
 users/migrations/
 
 # If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/

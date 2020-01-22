@@ -1,9 +1,37 @@
-{% extends "blog/base.html" %}
+{% extends "main/base.html" %}
 {% block content %}
-    <h2>Vous venez de vous déconnecter !</h2>
-    <div class="border-top pt-3">
-        <small class="text-muted">
-            <a href="{% url 'login' %}">Vous reconnecter</a>
-        </small>
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Vous venez de vous déconnecter !</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-8 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>
+                                        <a href="{% url 'login' %}">Vous reconnecter</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock content %}

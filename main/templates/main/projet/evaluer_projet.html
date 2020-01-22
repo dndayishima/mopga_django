@@ -3,7 +3,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Qui sommes-nous?</h1>
+        <h1 class="h3 mb-0 text-gray-800">Donner une note pour le projet</h1>
     </div>
 
     <div class="row">
@@ -21,10 +21,11 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="alert alert-info mt-1">
-                                        Un e-mail a été envoyé avec des instructions pour réinitialiser votre mot de
-                                        passe
-                                    </div>
+                                    <form method="POST" class="post-form">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type="submit" class="btn btn-outline-info">valider</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

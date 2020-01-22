@@ -1,9 +1,11 @@
 {% extends "main/base.html" %}
+{% load crispy_forms_tags %}
+
 {% block content %}
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Qui sommes-nous?</h1>
+        <h1 class="h3 mb-0 text-gray-800">Projet</h1>
     </div>
 
     <div class="row">
@@ -21,10 +23,16 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <div class="alert alert-info mt-1">
-                                        Un e-mail a été envoyé avec des instructions pour réinitialiser votre mot de
-                                        passe
-                                    </div>
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <fieldset class="form-group">
+                                            <legend class="border-bottom mb-4"></legend>
+                                            {{ form|crispy }}
+                                        </fieldset>
+                                        <div class="form-group">
+                                            <button class="btn btn-outline-info">valider</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

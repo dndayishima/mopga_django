@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     # My applications
-    'blog.apps.BlogConfig',
-    'users.apps.UsersConfig'
+    'main.apps.MainConfig',
+    'users.apps.UsersConfig',
+    'rss.apps.RssConfig'
 ]
 
 MIDDLEWARE = [
@@ -136,7 +137,7 @@ MEDIA_URL = "/media/"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
-LOGIN_REDIRECT_URL = "blog-home"
+LOGIN_REDIRECT_URL = "main-home"
 
 LOGIN_URL = "login"
 
@@ -145,5 +146,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'email'
-EMAIL_HOST_PASSWORD = 'motdepasse'
+EMAIL_HOST_USER = 'msalimyoussef@gmail.com'
+EMAIL_HOST_PASSWORD = 'psyp tcus wsfg ufhi'

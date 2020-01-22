@@ -1,0 +1,65 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Projets publiés par {{ view.kwargs.username }} - [{{ page_obj.paginator.count }} Projet(s)]</h1>
+    </div>
+
+    {% for projet in projets %}
+        <div class="row">
+            <div class="col-xl-8 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    <img class="img-profile rounded-circle"
+                                         src="{{ projet.auteur.profile.image.url }}">
+                                </div>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <a class="mr-2"
+                                           href="{% url 'user-projets' projet.auteur.username %}">{{ projet.auteur }}</a>
+                                        <small class="text-muted">{{ projet.created_at| date:"F D, Y" }}</small>
+                                        <h2><a class="article-title"
+                                               href="{% url 'projet-detail' projet.id %}">{{ projet.intitule }}</a></h2>
+                                        <p class="article-content">{{ projet.description }}</p>
+                                        <h3>Montant requis: {{ projet.montant_souhaite }} euros</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-info mb-4" href="?page=1">Premier</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Precedent</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Suivant</a>
+            <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Dernier</a>
+        {% endif %}
+    {% endif %}
+{% endblock content %}

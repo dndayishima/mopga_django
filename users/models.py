@@ -8,8 +8,9 @@ from PIL import Image
 # Si un utilisateur est supprimé, son profile l'est aussi
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default="default.png", upload_to="profile_pics")
+    image = models.ImageField(default="default.png", upload_to="profile_pics/%d-%m-%Y-%H-%M-%S")
     is_expert = models.BooleanField(default=False)
+    points_gagnes = models.IntegerField(default=0)
 
     def __str__(self):
         return self.user.username
@@ -24,7 +25,6 @@ class Profile(models.Model):
 
         img = Image.open(self.image.path)
 
-        if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+        output_size = (60, 60)
+        img.thumbnail(output_size)
+        img.save(self.image.path)

@@ -1,0 +1,75 @@
+{% extends "main/base.html" %}
+{% block content %}
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dernier projet financé</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        {% if projet %}
+            <div class="col-lg-8 mb-4">
+
+                <div class=" card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">{{ projet.intitule }}</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                 src="{{ projet.image.url }}" alt="">
+                        </div>
+                        <p>
+                            {{ projet.description }}
+                        </p>
+                        <hr>
+                        <p class="mt-3" style="color: #36b9cc;">Montant requis: {{ projet.montant_souhaite }} euros</p>
+                        <p class="mt-3" style="color: #36b9cc;">Note moyenne: 5.5</p>
+                        <hr>
+                        <small class="text-muted">
+                            Par <a href="{% url 'user-projets' projet.auteur.username %}">{{ projet.auteur }}</a>
+                            - {{ projet.created_at| date:"F D, Y - G:i" }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    {% for commentaire in commentaires %}
+    <div class="row">
+        <div class="col-xl-8 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                {{ commentaire.auteur.username }} - {{ commentaire.created_at }}
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        <img class="img-profile rounded-circle"
+                                     src="{{ commentaire.auteur.profile.image.url }}">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <p>{{ commentaire.contenu }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-thumbs-up fa-2x" style="color: #36b9cc;"></i>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mt-1">
+                                {{ commentaire.reactions}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock content %}
