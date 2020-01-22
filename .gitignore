@@ -17,7 +17,6 @@ __pycache__/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-media
 .idea/
 
 # Ne pas ajouter les migrations, car ces derniers peuvent être produits
