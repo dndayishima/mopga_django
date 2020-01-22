@@ -22,4 +22,4 @@ RUN pip install -r requirements.txt
 
 # Récupération du code source depuis un repo GIT
 #COPY . /app/
-RUN git clone https://github.com/dndayishima/mopga_django.git .
+RUN git clone https://github.com/dndayishima/mopga_django.git
