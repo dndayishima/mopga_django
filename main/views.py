@@ -1,6 +1,7 @@
 from django.http import HttpResponse
+from main.functions import *
 from django.core.mail import send_mail, BadHeaderError
-from django.shortcuts import render, get_object_or_404, redirect, render_to_response
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -68,7 +69,8 @@ def projetFinance(request):
 
     context = {
         'commentaires': Commentaire.objects.all().filter(projet=projet),
-        'projet': projet
+        'projet': projet,
+        'note_moyenne': note_moyenne(projet.pk)
     }
 
     return render(request, 'main/home.html', context)
@@ -235,6 +237,11 @@ def financer_projet(request, pk):
             finance.projet = projet
             finance.financeur = request.user
             finance.save()
+
+            # verifier si le projet est financé
+            # Probleme combaraison entre decimal et QuerySet
+            #est_finance(pk)
+
             return redirect('projet-detail', pk=projet.pk)
     else:
         form = FinancerForm()

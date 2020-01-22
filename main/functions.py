@@ -1,3 +1,5 @@
+from django.db.models.functions import Now
+
 from main.models import Financer, Projet, Evaluer
 from django.db.models import Sum, Avg
 from users.models import Profile
@@ -7,12 +9,15 @@ Vérifier si un projet est financé
 """
 def est_finance(projet_id):
 
-    total = Financer.objects.annotate(total=Sum('montant')).filter(pk=projet_id)
+    total = Financer.objects.filter(pk=projet_id).annotate(total=Sum('montant'))
+
     projet = Projet.objects.all().filter(pk=projet_id).first()
 
     montant_requis = projet.montant_souhaite
 
-    return (total >= montant_requis)
+    if total >= montant_requis:
+        Projet.objects.all().filter(pk=projet_id).update(est_finance=True, date_finance=Now())
+
 
 
 """
@@ -29,7 +34,7 @@ Calculer la note moyenne d'un projet
 """
 def note_moyenne(projet_id):
 
-    moyenne = Evaluer.objects.aggregate(average_rating=Avg('note_projet')).filter(pk=projet_id)
+    moyenne = Evaluer.objects.filter(pk=projet_id).aggregate(moyenne=Avg('note_projet'))
 
     return moyenne
 
